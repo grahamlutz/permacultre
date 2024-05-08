@@ -10,11 +10,11 @@ const routes = require('./routes');
 app.use('/api/plants', routes.plantRoutes);
 
 // Serve static files from the React App
-app.use(express.static(path.join(__dirname, 'client/build')));
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Handle React routing, return all request to React App
 app.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  res.sendFile(path.join(__dirname, 'build', 'index.html'));
 });
 
 app.listen(port, () => {
