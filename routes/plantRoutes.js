@@ -1,7 +1,10 @@
 const express = require('express');
-const router = express.Router();
+const cors = require('cors');
 const axios = requires('axios');
 
-router.get('/plants', (req, res) => {
+const router = express.Router();
+
+router.get('/plants', cors(), (req, res) => {
+  console.log('tada');
   res.json('tada');
 })
