@@ -1,4 +1,8 @@
 import React, { useState } from 'react';
+import Box from '@mui/material/Box';
+import Button from '@mui/material/Button';
+import TextField from '@mui/material/TextField';
+
 import axios from 'axios';
 
 const PlantList = () => {
@@ -18,16 +22,21 @@ const PlantList = () => {
 
   return (
     <div>
-      <form onSubmit={handleSubmit}>
-        <input
-          type="text"
-          value={location}
-          onChange={(e) => setLocation(e.target.value)}
-          placeholder="Enter your location"
-        />
-        <button type="submit">Get Plants</button>
-      </form>
-
+      <Box
+        component="form"
+        sx={{
+          '& > :not(style)': { m: 1, width: '25ch' },
+        }}
+        noValidate
+        autoComplete="off"
+      >
+        
+        <TextField id="standard-basic" label="Zip Code" variant="standard" />
+        <Button onClick={handleSubmit}>
+            Submit
+        </Button>
+      </Box>
+      
       <ul>
         {plants.map((plant) => (
           <li key={plant.id}>{plant.name}</li>
