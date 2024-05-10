@@ -14,7 +14,8 @@ const PlantList = () => {
 
     try {
       const response = await axios.get(`/api/plants/${location}`);
-      setPlants(response.data);
+      setPlants(response.data[0].data);
+      console.log(response.data[0].data);
     } catch (error) {
       console.error('Error fetching plant data:', error);
     }
@@ -38,8 +39,8 @@ const PlantList = () => {
       </Box>
       
       <ul>
-        {plants.map((plant) => (
-          <li key={plant.id}>{plant.name}</li>
+        {plants.map((plant) => ( 
+          <li key={plant.id}>{plant.scientific_name}</li>
         ))}
       </ul>
     </div>
