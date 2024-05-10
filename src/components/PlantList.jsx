@@ -1,6 +1,11 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import List from '@mui/material/List';
+import ListItem from '@mui/material/ListItem';
+import ListItemText from '@mui/material/ListItemText';
 import TextField from '@mui/material/TextField';
 
 import axios from 'axios';
@@ -15,14 +20,13 @@ const PlantList = () => {
     try {
       const response = await axios.get(`/api/plants/${location}`);
       setPlants(response.data[0].data);
-      console.log(response.data[0].data);
     } catch (error) {
       console.error('Error fetching plant data:', error);
     }
   };
 
   return (
-    <div>
+    <Container>
       <Box
         component="form"
         sx={{
@@ -37,13 +41,17 @@ const PlantList = () => {
             Submit
         </Button>
       </Box>
-      
-      <ul>
-        {plants.map((plant) => ( 
-          <li key={plant.id}>{plant.scientific_name}</li>
-        ))}
-      </ul>
-    </div>
+      <Divider />
+      <Box>
+        <List>
+          {plants.map((plant) => ( 
+              <ListItem key={plant.id} disablePadding>
+                  <ListItemText primary={plant.scientific_name} />
+              </ListItem>
+          ))}
+        </List>
+      </Box>
+    </Container>
   );
 };
 
